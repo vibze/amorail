@@ -83,7 +83,7 @@ module Amorail
     end
 
     def safe_request(method, url, params = {})
-      authorize if access_token.blank?
+      authorize if access_token.blank? && refresh_token.blank?
       refresh_token! if access.expired?
       public_send(method, url, params)
     end
